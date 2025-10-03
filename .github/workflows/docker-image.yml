@@ -22,7 +22,7 @@ jobs:
     - name: Build the Docker image
       run: docker build -t ci-cd-docker- .
     - name: Push the DockerHub
-      run : docker push amanchoudhary602/ci-cd-docker-:latest
+      run : docker push amanchoudhary602/ci-cd-docker:latest
 
 
 
