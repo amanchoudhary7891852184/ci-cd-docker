@@ -16,8 +16,8 @@ jobs:
     - uses: actions/checkout@v4
     - name: Login to DockerHub
       env :
-        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        DOCKER_USERNAME: ${{ secrets.amanchoudhary602 }}
+        DOCKER_PASSWORD: ${{ secrets.Aman*1234 }}
       run : docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
     - name: Build the Docker image
       run: docker build -t ci-cd-docker- .
