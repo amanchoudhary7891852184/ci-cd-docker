@@ -1,37 +1,18 @@
-import numpy as np
-import pandas as pd
+# Use an official Python runtime as a parent image
+FROM python:3.9-slim
 
+# Set the working directory
+WORKDIR /app
 
-df = pd.read_csv('placement.csv')
-# print(df)
+# Copy requirements.txt and install dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
+# Copy the application code
+COPY . .
 
+# Expose the Streamlit port
+EXPOSE 8501
 
-# print(df.isnull().sum())
-
-
-
-# from sklearn.impute import SimpleImputer
-# si = SimpleImputer()
-# df
-
-
-from sklearn.preprocessing import LabelEncoder
-lb = LabelEncoder()
-
-
-x= df.drop(columns=['placed'])
-y= df['placed']
-from sklearn.model_selection import train_test_split
-x_train , x_test , y_train ,y_test = train_test_split(x,y , test_size = 0.2 , random_state= 42)
-
-
-from sklearn.ensemble import RandomForestClassifier
-rf= RandomForestClassifier()
-
-rf.fit(x_train,y_train)
-y_pred = rf.predict(x_test)
-
-
-from sklearn.metrics import accuracy_score
-print("preformace:----",accuracy_score(y_test, y_pred))
+# Run the Streamlit application
+CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
